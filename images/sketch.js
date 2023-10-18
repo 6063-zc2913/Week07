@@ -13,27 +13,30 @@ function setup() {
   print(mImg.pixels. length);
 }
 
-function draw() {
+function draw(){
   background(220, 20, 120);
+  noStroke();
 
   mImg. loadPixels();
 
-for (let vi = 0; vi < mImg.pixels. length; vi += 4){
-  let redVal = mImg.pixels[vi+0];
-  let greenVal = mImg.pixels[vi+1];
-  let blueVal = mImg.pixels[vi+2];
-  let alphaVal = mImg.pixels[vi+3];
+  let spacing = 32;
 
-  let maxVal = max(redVal, greenVal, blueVal);
+for (let y = 0; y < mImg.height; y+= spacing){
+  for (let x = 0; x < mImg.width; x+= spacing){
+    let pixelIndex = 4* (y * mImg.width + x)
+      let redVal = mImg.pixels[pixelIndex + 0];
+      let greenVal = mImg.pixels[pixelIndex + 1];
+      let blueVal = mImg.pixels[pixelIndex + 2];
 
-  if (maxVal == blueVal){
-    mImg.pixels[vi+3] = 0;
-  } 
-  } 
-
+      fill(redVal, greenVal, blueVal);
+      ellipse(x, y, spacing, spacing);
+    }
+  }
   mImg. updatePixels();
-  image(mImg, (width - mImg.width)/2, 0);
 }
+
+
+
 
 
   
